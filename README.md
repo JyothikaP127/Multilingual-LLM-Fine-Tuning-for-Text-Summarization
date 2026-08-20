@@ -1,117 +1,240 @@
 # Multilingual LLM Fine-Tuning for Text Summarization
 
-**Research question:** Can parameter-efficient LoRA fine-tuning improve multilingual text
-summarization while substantially reducing the number of trainable parameters compared
-with full fine-tuning?
+Parameter-efficient fine-tuning of mT5-small for multilingual news
+summarization across English, Hindi, and Telugu using LoRA.
 
-Status: **scaffolding + environment/model/dataset verification stage.** No training has
-been run yet.
+## Overview
 
-## Fixed decisions
+This project investigates whether parameter-efficient fine-tuning of
+`google/mt5-small` can improve multilingual text summarization compared
+with zero-shot generation and simple extractive baselines.
 
-| Item | Decision |
-|---|---|
-| Model | `google/mt5-small` |
-| Framework | PyTorch + Hugging Face Transformers + PEFT (LoRA) |
-| Dataset | [XL-Sum](https://huggingface.co/datasets/csebuetnlp/xlsum) (`csebuetnlp/xlsum`), CC-BY-NC-SA-4.0 |
-| Languages | English, Hindi, Telugu |
-| Split sizes (per language, balanced) | train 2,000 / validation 300 / test 500 |
-| Experiments | zero-shot base, Lead-N extractive baseline, full fine-tuning, LoRA fine-tuning |
-| Evaluation | ROUGE-1/2/L (multilingual-safe tokenization) + multilingual BERTScore, per-language breakdown, bootstrap CIs, qualitative error analysis |
+The model is fine-tuned using LoRA (Low-Rank Adaptation), allowing only a
+small fraction of the model parameters to be updated while keeping the
+base model frozen.
 
-## Hardware model
+Languages:
+- English
+- Hindi
+- Telugu
 
-This project is developed on a **CPU-only laptop** (no CUDA GPU) and trained on a
-**free-tier cloud GPU** (Colab / Kaggle). Nothing in the code assumes a specific machine:
+Dataset:
+- XL-Sum
 
-- Device and BF16 support are auto-detected at runtime (`src/utils/hardware.py`); the
-  local machine falls back to CPU/fp32, a cloud GPU auto-selects bf16 if the GPU is
-  Ampere-or-newer, otherwise fp32. FP16 is intentionally never auto-selected — mT5 was
-  pretrained in bf16 and is known to produce NaN losses under fp16 mixed precision.
-- Config (`configs/hardware/*.yaml`) can force a precision/batch profile regardless of
-  what's detected.
-- No absolute or machine-specific paths appear anywhere in the code; all paths are
-  relative to the repo root or come from config.
+## Dataset
 
-## Known non-obvious facts baked into this design (verified, not assumed)
+For each language:
 
-- **mT5-small has ~172.1M total parameters, not ~300M.** Its `config.json` says
-  `tie_word_embeddings: false`, but `transformers`' `MT5Config` source forces
-  `tie_word_embeddings = True` at load time regardless (a documented override in the
-  library itself) — the input embedding and output projection share one tensor. That
-  tied embedding matrix is ~128.1M params, ~74% of the entire model. Trainable-parameter
-  percentages are therefore reported both against the full total and against the
-  ~44M-parameter non-embedding backbone.
-- **LoRA target modules are `["q", "v"]`**, verified directly against the
-  `MT5Attention` source in `transformers==5.14.1` (layers are named `q`/`k`/`v`/`o`, not
-  `q_proj`/`v_proj`) and cross-checked against PEFT's own
-  `TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING`, which lists the same for both
-  `t5` and `mt5`.
-- **Token length differs sharply by language under the mT5 SentencePiece tokenizer**
-  (e.g. Telugu articles run ~2.2x longer in tokens than English articles covering
-  similar stories). A fixed `max_source_length` truncates Telugu far more aggressively
-  than English — this is measured and reported per language as a QA artifact
-  (`results/qa/`), not left as a silent confound.
-- **`bert_score`'s default `lang2model` mapping has no entry for Hindi or Telugu** and
-  defaults English to an English-only backbone (`roberta-large`). This project pins one
-  multilingual backbone (`bert-base-multilingual-cased`) explicitly for all three
-  languages so BERTScore numbers are actually comparable across languages.
-- **XL-Sum is loaded from the Hub's auto-converted Parquet revision**
-  (`csebuetnlp/xlsum`, commit `ab04842511fc357feae53281fd104aa3c36dff07`), not the
-  legacy `trust_remote_code` loading script, since `datasets` is moving away from
-  script-based loading and pinning a commit (rather than the mutable
-  `refs/convert/parquet` ref) keeps the dataset snapshot reproducible.
+| Split | Examples |
+|---|---:|
+| Train | 2,000 |
+| Validation | 300 |
+| Test | 500 |
 
-## License note
+Total:
+- 6,000 training examples
+- 900 validation examples
+- 1,500 test examples
 
-XL-Sum is distributed under **CC-BY-NC-SA-4.0** (attribution, non-commercial,
-share-alike). This project uses it for non-commercial research/portfolio purposes only.
-Citation: Hasan et al., "XL-Sum: Large-Scale Multilingual Abstractive Summarization for
-44 Languages", Findings of ACL-IJCNLP 2021.
+The dataset pipeline performs:
+- deterministic sampling
+- missing/empty-field validation
+- train/validation/test ID-overlap checks
+- Unicode/script validation
+- source/target token-length analysis
+- seq2seq preprocessing with `-100` label masking
 
-## Setup
+## Model
 
-```bash
-# 1. Install torch for your platform (see requirements.txt header for exact commands)
-pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
+Base model:
 
-# 2. Install the rest
-pip install -r requirements.txt
-```
+`google/mt5-small`
 
-## Repository layout
+Fine-tuning method:
 
-```
-configs/            YAML configs (base, data, model, lora, full_finetune, eval, hardware/)
+**LoRA (Low-Rank Adaptation)**
+
+Configuration:
+
+| Parameter | Value |
+|---|---:|
+| LoRA rank | 8 |
+| LoRA alpha | 16 |
+| LoRA dropout | 0.05 |
+| Target modules | q, v |
+| Task type | SEQ_2_SEQ_LM |
+| Trainable parameters | 344,064 |
+| Base model parameters | 556,291,456 |
+| Trainable percentage | 0.0618% |
+
+The base model parameters remain frozen during training.
+
+## Sequence Length Analysis
+
+Source truncation was evaluated at 512, 768 and 1024 tokens.
+
+The final configuration uses:
+
+- `max_source_length = 768`
+- `max_target_length = 128`
+
+Measured source truncation at 768:
+
+| Language | Truncated |
+|---|---:|
+| English | 34.0% |
+| Hindi | 52.6% |
+| Telugu | 76.5% |
+
+Telugu has substantially longer tokenized source articles, resulting in
+higher truncation rates. Increasing the global sequence length reduces
+absolute truncation but does not eliminate the language disparity.
+
+## Baselines
+
+Three baselines were evaluated:
+
+### 1. Zero-shot mT5-small
+
+The pretrained mT5-small model is evaluated without fine-tuning.
+
+### 2. Lead-1
+
+The first sentence of each article is used as the summary.
+
+### 3. Lead-3
+
+The first three sentences are used as the summary.
+
+## Results
+
+All models were evaluated on the same 1,500-example test set.
+
+| Model | ROUGE-1 | ROUGE-2 | ROUGE-L | BERTScore |
+|---|---:|---:|---:|---:|
+| Zero-shot mT5-small | 0.0794 | 0.0171 | 0.0752 | 0.5743 |
+| Lead-1 | 0.2517 | 0.0846 | 0.1880 | 0.6935 |
+| Lead-3 | 0.2647 | 0.1004 | 0.1757 | 0.6918 |
+| **LoRA mT5-small** | **0.2411** | **0.0888** | **0.1980** | **0.6788** |
+
+## Language-wise Results
+
+### English
+
+| Model | ROUGE-1 | ROUGE-2 | ROUGE-L | BERTScore |
+|---|---:|---:|---:|---:|
+| Zero-shot | 0.0936 | 0.0182 | 0.0869 | 0.5867 |
+| Lead-1 | 0.2401 | 0.0376 | 0.1815 | 0.6915 |
+| Lead-3 | 0.2407 | 0.0564 | 0.1643 | 0.6855 |
+| **LoRA** | **0.2645** | **0.0682** | **0.2137** | 0.6738 |
+
+LoRA achieves the strongest ROUGE performance for English.
+
+### Hindi
+
+| Model | ROUGE-1 | ROUGE-2 | ROUGE-L | BERTScore |
+|---|---:|---:|---:|---:|
+| Zero-shot | 0.0856 | 0.0260 | 0.0804 | 0.5952 |
+| Lead-1 | **0.3010** | 0.1228 | **0.2173** | **0.7074** |
+| Lead-3 | 0.3002 | **0.1348** | 0.1936 | 0.7022 |
+| LoRA | 0.2679 | 0.1144 | 0.2157 | 0.6916 |
+
+Extractive baselines remain stronger than LoRA for Hindi.
+
+### Telugu
+
+| Model | ROUGE-1 | ROUGE-2 | ROUGE-L | BERTScore |
+|---|---:|---:|---:|---:|
+| Zero-shot | 0.0591 | 0.0070 | 0.0583 | 0.5410 |
+| Lead-1 | 0.2141 | 0.0933 | 0.1654 | 0.6815 |
+| Lead-3 | **0.2532** | **0.1100** | **0.1692** | **0.6876** |
+| LoRA | 0.1911 | 0.0838 | 0.1647 | 0.6709 |
+
+Telugu has the lowest LoRA performance and the highest source truncation.
+
+## Key Findings
+
+1. LoRA fine-tuning substantially improves mT5-small over zero-shot
+   summarization.
+
+2. LoRA achieves the highest overall ROUGE-L score among the evaluated
+   systems.
+
+3. Simple Lead-N extractive baselines remain highly competitive and
+   outperform LoRA on several overall and language-specific metrics.
+
+4. English benefits most clearly from LoRA fine-tuning.
+
+5. Telugu remains challenging and has substantially higher source-side
+   truncation.
+
+6. The relationship between Telugu's truncation and lower performance is
+   consistent with the observed results, but the current experiment does
+   not establish truncation as a causal factor.
+
+## Inference
+
+The final LoRA model was evaluated on 1,500 test examples using a Kaggle
+Tesla T4 GPU.
+
+Inference configuration:
+
+- batch size: 8
+- maximum source length: 768
+- maximum generated tokens: 128
+- beam size: 4
+- precision: BF16
+
+Measured inference time:
+
+| Language | Time | Examples/sec |
+|---|---:|---:|
+| English | 71.1 s | 7.03 |
+| Hindi | 128.5 s | 3.89 |
+| Telugu | 104.3 s | 4.79 |
+| **Total** | **303.9 s** | **4.94** |
+
+## Evaluation
+
+The project evaluates:
+
+- ROUGE-1
+- ROUGE-2
+- ROUGE-L
+- BERTScore
+
+ROUGE uses SentencePiece tokenization and BERTScore uses the multilingual
+BERT backbone.
+
+## Project Structure
+
+```text
+configs/
+├── base.yaml
+├── data.yaml
+├── eval.yaml
+├── lora.yaml
+└── hardware/
+
 src/
-  data/              XL-Sum loading (Parquet-based) + tokenizer-based length stats
-  models/            Model/PEFT architecture inspection helpers
-  train/             (not yet implemented)
-  eval/              (not yet implemented)
-  utils/             hardware auto-detection, seeding, JSON report saving
+├── data/
+├── eval/
+├── models/
+├── train/
+└── utils/
+
 scripts/
-  verify_environment.py   environment inspection -> results/qa/environment_report.json
-  inspect_model.py        mT5 architecture + LoRA compatibility -> results/qa/model_architecture_report.json
-  inspect_dataset.py      XL-Sum structure, ID-overlap check, truncation report -> results/qa/dataset_inspection_report.json
-results/             QA/inspection artifacts and (later) experiment metrics
-report/              Final write-up (not yet started)
-```
+├── train_lora.py
+├── run_lora_test_inference.py
+├── run_baseline_zero_shot.py
+├── run_lead_n_baseline.py
+├── evaluate_predictions.py
+└── ...
 
-## Running the verification scripts
+results/
+├── metrics/
+├── qa/
+└── qualitative_samples/
 
-```bash
-python scripts/verify_environment.py
-python scripts/inspect_model.py
-python scripts/inspect_dataset.py
-```
-
-Each writes a JSON report under `results/qa/` and prints a human-readable summary.
-None of these scripts train a model, download the full dataset, or write checkpoints.
-
-## Reproducibility
-
-- Global seed fixed at `42` (`configs/base.yaml`, applied via `src/utils/seed.py`).
-- All package versions pinned in `requirements.txt`, verified as a mutually compatible
-  set against `google/mt5-small` + PEFT LoRA before pinning (see commit history / dev
-  notes for the verification steps).
-- Dataset snapshot pinned to an exact Hub commit, not a mutable ref or branch.
+requirements.txt
+README.md
