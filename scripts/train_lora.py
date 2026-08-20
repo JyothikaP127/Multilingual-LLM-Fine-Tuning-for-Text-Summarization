@@ -1,14 +1,22 @@
 """LoRA fine-tuning entry point.
 
 Usage:
-  python scripts/train_lora.py --mode smoke   (default; tiny pipeline validation, CPU-safe)
-  python scripts/train_lora.py --mode full    (NOT approved yet -- refuses to run)
+  python scripts/train_lora.py --mode smoke   (tiny pipeline validation, CPU-safe)
+  python scripts/train_lora.py --mode full    (the real run: full LoRA training, approved)
 
-The smoke test uses a small deterministic PREFIX of the project's real
-canonical train/validation splits (same ids as everywhere else in the
-project), not a separately re-sampled subset -- so it is a genuine slice of
-real training data, not synthetic or independently-drawn data. It writes to
-results/checkpoints/smoke_test/, never the full-run directory.
+--mode smoke uses configs/lora.yaml's `smoke_test` section: a small
+deterministic PREFIX of the project's real canonical train/validation
+splits (same ids as everywhere else in the project, not a separately
+re-sampled subset), tiny batch/epoch settings, and writes to
+results/checkpoints/smoke_test/.
+
+--mode full uses configs/lora.yaml's `training` section: the full canonical
+train (2,000/language) and validation (300/language) splits, the approved
+full-run hyperparameters, and writes to configs/lora.yaml's
+output.full_run_dir (results/checkpoints/lora_full/). Both modes share
+identical LoRA config, target-module verification, freezing verification,
+gradient-flow verification, and post-training checks -- only which config
+section supplies the data size / batch / epoch / output-dir values differs.
 """
 from __future__ import annotations
 
@@ -110,12 +118,6 @@ def main() -> None:
     parser.add_argument("--mode", choices=["smoke", "full"], default="smoke")
     args = parser.parse_args()
 
-    if args.mode == "full":
-        raise RuntimeError(
-            "Full LoRA training run has not been approved yet. This script refuses to run "
-            "--mode full until that approval is explicit. Re-run with --mode smoke."
-        )
-
     base_cfg = load_yaml("base.yaml")
     data_cfg = load_yaml("data.yaml")
     lora_cfg = load_yaml("lora.yaml")
@@ -123,7 +125,22 @@ def main() -> None:
     set_seed(base_cfg["seed"])
     hw = detect_hardware()
 
-    smoke_cfg = lora_cfg["smoke_test"]
+    # The only mode-dependent choice: which pre-existing config section
+    # supplies data size / batch / epoch / output-dir values. No new
+    # hyperparameter values are introduced by this branch -- "full" reads
+    # configs/lora.yaml's `training` + `output.full_run_dir`, exactly as
+    # already defined; "smoke" reads `smoke_test`, unchanged from before.
+    if args.mode == "full":
+        run_cfg = lora_cfg["training"]
+        train_n_per_language = None  # None -> full canonical split (2,000/language)
+        val_n_per_language = None  # None -> full canonical split (300/language)
+        output_dir = str(repo_path(lora_cfg["output"]["full_run_dir"]))
+    else:
+        run_cfg = lora_cfg["smoke_test"]
+        train_n_per_language = run_cfg["train_examples_per_language"]
+        val_n_per_language = run_cfg["val_examples_per_language"]
+        output_dir = str(repo_path(run_cfg["output_dir"]))
+
     train_max_src = lora_cfg["training"]["max_source_length"]
     train_max_tgt = lora_cfg["training"]["max_target_length"]
     assert train_max_src == data_cfg["preprocessing"]["max_source_length"], (
@@ -132,14 +149,16 @@ def main() -> None:
     )
     assert train_max_tgt == data_cfg["preprocessing"]["max_target_length"]
 
-    print("=== LoRA training: SMOKE TEST ===")
+    print(f"=== LoRA training: {args.mode.upper()} ===")
     print(f"Hardware: device={hw.device} cuda_available={hw.cuda_available} torch={hw.torch_version}")
 
-    print("\nLoading data (prefix subset of the canonical deterministic splits, no new downloads)...")
-    train_rows = load_multilingual_split(data_cfg, "train", smoke_cfg["train_examples_per_language"])
-    val_rows = load_multilingual_split(data_cfg, "validation", smoke_cfg["val_examples_per_language"])
-    print(f"  train: {len(train_rows)} examples total ({smoke_cfg['train_examples_per_language']}/language)")
-    print(f"  val:   {len(val_rows)} examples total ({smoke_cfg['val_examples_per_language']}/language)")
+    print("\nLoading data (canonical deterministic splits, no new downloads)...")
+    train_rows = load_multilingual_split(data_cfg, "train", train_n_per_language)
+    val_rows = load_multilingual_split(data_cfg, "validation", val_n_per_language)
+    train_desc = "full canonical split" if train_n_per_language is None else f"{train_n_per_language}/language"
+    val_desc = "full canonical split" if val_n_per_language is None else f"{val_n_per_language}/language"
+    print(f"  train: {len(train_rows)} examples total ({train_desc})")
+    print(f"  val:   {len(val_rows)} examples total ({val_desc})")
     for lang in sorted({r["language"] for r in train_rows}):
         n_tr = sum(1 for r in train_rows if r["language"] == lang)
         n_va = sum(1 for r in val_rows if r["language"] == lang)
@@ -213,16 +232,15 @@ def main() -> None:
     print(f"\nTracking LoRA param: {lora_param_name} (checksum before: {checksum_before})")
     print(f"Tracking frozen base param: {base_param_name}")
 
-    output_dir = str(repo_path(smoke_cfg["output_dir"]))
     training_hp = {
-        "per_device_train_batch_size": smoke_cfg["per_device_train_batch_size"],
-        "gradient_accumulation_steps": smoke_cfg["gradient_accumulation_steps"],
-        "num_train_epochs": smoke_cfg["num_train_epochs"],
+        "per_device_train_batch_size": run_cfg["per_device_train_batch_size"],
+        "gradient_accumulation_steps": run_cfg["gradient_accumulation_steps"],
+        "num_train_epochs": run_cfg["num_train_epochs"],
         "learning_rate": lora_cfg["training"]["learning_rate"],
         "warmup_ratio": lora_cfg["training"]["warmup_ratio"],
         "weight_decay": lora_cfg["training"]["weight_decay"],
-        "precision": smoke_cfg["precision"],
-        "logging_steps": smoke_cfg["logging_steps"],
+        "precision": run_cfg["precision"],
+        "logging_steps": run_cfg["logging_steps"],
         "seed": base_cfg["seed"],
     }
     training_args, resolved_precision = build_training_arguments(output_dir, training_hp, hw)
@@ -235,7 +253,7 @@ def main() -> None:
 
     trainer = build_trainer(peft_model, tokenizer, training_args, train_dataset, val_dataset)
 
-    print("\n=== Training (smoke test) ===")
+    print(f"\n=== Training ({args.mode}) ===")
     t0 = time.time()
     train_result = trainer.train()
     train_time = time.time() - t0
@@ -281,8 +299,8 @@ def main() -> None:
     # --- save adapter + tokenizer + config + logs ---
     save_lora_checkpoint(peft_model, tokenizer, output_dir)
     save_json_report(
-        {"lora_config": lora_cfg, "smoke_test_config": smoke_cfg, "resolved_precision": resolved_precision},
-        repo_path(f"{smoke_cfg['output_dir']}/training_config_used.json"),
+        {"lora_config": lora_cfg, "mode": args.mode, "run_config": run_cfg, "resolved_precision": resolved_precision},
+        repo_path(f"{output_dir}/training_config_used.json"),
     )
     save_json_report(
         {
@@ -298,7 +316,7 @@ def main() -> None:
             "base_param_checked": base_param_name,
             "base_param_unchanged": base_unchanged,
         },
-        repo_path(f"{smoke_cfg['output_dir']}/training_metrics.json"),
+        repo_path(f"{output_dir}/training_metrics.json"),
     )
 
     ckpt_files = [f for f in Path(output_dir).rglob("*") if f.is_file()]
@@ -328,7 +346,7 @@ def main() -> None:
     decoded = tokenizer.batch_decode(gen_ids, skip_special_tokens=True)
     print(f"  reload+generate output: {decoded[0]!r}")
 
-    print("\n=== SMOKE TEST PASSED ===")
+    print(f"\n=== {args.mode.upper()} TRAINING PASSED ===")
 
 
 if __name__ == "__main__":
