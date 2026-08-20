@@ -1,55 +1,35 @@
 __pycache__/
 *.pyc
-*.pyo
+.ipynb_checkpoints/
+
+# Python environments
 .venv/
 venv/
 env/
 
-# Hugging Face / dataset / model caches (this project's default cache lives
-# outside the repo, in the user's home directory -- these rules are
-# defensive in case a cache is ever created locally instead).
+# Hugging Face cache
 .cache/
-**/.cache/
 huggingface_cache/
+hf_cache/
 
-# Downloaded/raw dataset files -- this project loads XL-Sum directly from the
-# Hub's Parquet revision at run time (src/data/xlsum_loader.py) and never
-# writes a local copy, but excluded defensively in case that ever changes.
-data/raw/
-*.parquet
-
-# Model weights / training checkpoints -- LoRA adapters and any full model
-# checkpoints are regenerable via scripts/train_lora.py and must never be
-# committed. Matches results/checkpoints/ at any depth.
+# Large model/checkpoint artifacts
+results/checkpoints/
 *.bin
-*.safetensors
 *.pt
 *.pth
 *.ckpt
-checkpoints/
-wandb/
 
-# Large, regenerable raw prediction dumps (full source articles duplicated
-# across every row -- tens of MB). Rerun scripts/run_baseline_zero_shot.py /
-# scripts/run_lead_n_baseline.py to regenerate. The small, curated
-# results/qualitative_samples/representative_examples.csv is intentionally
-# NOT excluded -- that one is a real deliverable.
-results/qualitative_samples/*_predictions.csv
+# Local/generated dataset artifacts
+data/cache/
+data/raw/
+*.parquet
 
-# Secrets / credentials -- defensive; none currently exist in this repo.
-.env
-.env.*
-*.pem
-*.key
-*credentials*.json
-hf_token*
-HF_TOKEN*
+# Temporary logs
+*.log
 
-# Claude Code local tool state -- machine/session-specific, not project source.
-.claude/
-
-# OS/editor cruft
+# OS/editor
 .DS_Store
 Thumbs.db
 .vscode/
-.idea/
+results/qualitative_samples/lora_test_predictions.csv
+results/qualitative_samples/lora_test_predictions.csv

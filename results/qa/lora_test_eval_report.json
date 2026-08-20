@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-08-20T18:26:52.685669+00:00",
+  "predictions_file": "/kaggle/working/Multilingual-LLM-Fine-Tuning-for-Text-Summarization/results/qualitative_samples/lora_test_predictions.csv",
+  "metrics_rows": [
+    {
+      "model": "LoRA mT5-small",
+      "language": "english",
+      "rouge1": 0.26445295038709377,
+      "rouge2": 0.0681913242078774,
+      "rougeL": 0.213722204310008,
+      "bertscore_f1": 0.6738094613552094,
+      "n_examples": 500
+    },
+    {
+      "model": "LoRA mT5-small",
+      "language": "hindi",
+      "rouge1": 0.26787606022231547,
+      "rouge2": 0.11437216618480858,
+      "rougeL": 0.21566619613463459,
+      "bertscore_f1": 0.6915678750276566,
+      "n_examples": 500
+    },
+    {
+      "model": "LoRA mT5-small",
+      "language": "telugu",
+      "rouge1": 0.19105292626026435,
+      "rouge2": 0.08383341060642865,
+      "rougeL": 0.16470851390388097,
+      "bertscore_f1": 0.6709489525556565,
+      "n_examples": 500
+    },
+    {
+      "model": "LoRA mT5-small",
+      "language": "overall",
+      "rouge1": 0.2411273122898912,
+      "rouge2": 0.08879896699970488,
+      "rougeL": 0.19803230478284117,
+      "bertscore_f1": 0.6787754296461741,
+      "n_examples": 1500
+    }
+  ]
+}

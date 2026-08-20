@@ -1,0 +1,62 @@
+{
+  "generated_at_utc": "2026-08-20T18:24:08.540462+00:00",
+  "model_name": "LoRA mT5-small",
+  "base_model": "google/mt5-small",
+  "adapter_path": "results/checkpoints/lora_full",
+  "examples_per_language": {
+    "english": 500,
+    "hindi": 500,
+    "telugu": 500
+  },
+  "total_examples": 1500,
+  "generation_config": {
+    "max_new_tokens": 128,
+    "num_beams": 4,
+    "length_penalty": 1.0,
+    "no_repeat_ngram_size": 3,
+    "early_stopping": true,
+    "do_sample": false
+  },
+  "batch_size": 8,
+  "max_source_length": 768,
+  "device": "cuda",
+  "precision": "bf16",
+  "total_inference_time_sec": 303.91424345970154,
+  "avg_inference_time_sec": 0.20260949563980102,
+  "timing_by_language": {
+    "english": {
+      "total_inference_time_sec": 71.11024284362793,
+      "avg_inference_time_sec": 0.14222048568725587,
+      "examples_per_sec": 7.031335852691496
+    },
+    "hindi": {
+      "total_inference_time_sec": 128.5229742527008,
+      "avg_inference_time_sec": 0.25704594850540163,
+      "examples_per_sec": 3.89035503502202
+    },
+    "telugu": {
+      "total_inference_time_sec": 104.2810263633728,
+      "avg_inference_time_sec": 0.2085620527267456,
+      "examples_per_sec": 4.794736084182019
+    }
+  },
+  "empty_predictions": 0,
+  "sentinel_only_predictions": 0,
+  "adapter_verification": {
+    "loaded_lora_config": {
+      "r": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q",
+        "v"
+      ]
+    },
+    "config_matches_expected": true,
+    "total_params": 556635520,
+    "lora_adapter_param_count": 344064,
+    "lora_param_count_matches_expected": true,
+    "unexpectedly_trainable_params": [],
+    "clean": true
+  }
+}
