@@ -200,9 +200,15 @@ def main() -> None:
         for name, _ in peft_model.named_parameters()
         if name.endswith("encoder.block.0.layer.0.SelfAttention.k.weight")
     )
+    # Snapshots are moved to CPU explicitly: the Trainer relocates the model
+    # to the training device (e.g. cuda:0) internally once trainer.train()
+    # runs, so a "before" snapshot taken pre-training (still on whatever
+    # device the model was on at that point) and an "after" snapshot taken
+    # post-training can end up on different devices. Comparing on CPU avoids
+    # that mismatch entirely, regardless of which device training used.
     params_by_name = dict(peft_model.named_parameters())
-    lora_param_before = params_by_name[lora_param_name].detach().clone()
-    base_param_before = params_by_name[base_param_name].detach().clone()
+    lora_param_before = params_by_name[lora_param_name].detach().cpu().clone()
+    base_param_before = params_by_name[base_param_name].detach().cpu().clone()
     checksum_before = _param_checksum(lora_param_before)
     print(f"\nTracking LoRA param: {lora_param_name} (checksum before: {checksum_before})")
     print(f"Tracking frozen base param: {base_param_name}")
@@ -248,12 +254,15 @@ def main() -> None:
 
     # --- post-training verification ---
     params_by_name_after = dict(peft_model.named_parameters())
-    lora_param_after = params_by_name_after[lora_param_name].detach().clone()
-    base_param_after = params_by_name_after[base_param_name].detach().clone()
+    lora_param_after = params_by_name_after[lora_param_name].detach().cpu().clone()
+    base_param_after = params_by_name_after[base_param_name].detach().cpu().clone()
     checksum_after = _param_checksum(lora_param_after)
 
     import torch
 
+    # Both before/after tensors are CPU by construction now (see the snapshot
+    # comments above), so this comparison is device-safe regardless of
+    # whether training ran on CPU or CUDA.
     lora_changed = not torch.equal(lora_param_before, lora_param_after)
     base_unchanged = torch.equal(base_param_before, base_param_after)
 
