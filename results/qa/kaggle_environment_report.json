@@ -1,0 +1,87 @@
+{
+  "generated_at_utc": "2026-08-20T15:43:02.051343+00:00",
+  "imports": {
+    "torch": {
+      "ok": true,
+      "version": "2.13.0+cpu"
+    },
+    "transformers": {
+      "ok": true,
+      "version": "5.14.1"
+    },
+    "peft": {
+      "ok": true,
+      "version": "0.20.0"
+    },
+    "datasets": {
+      "ok": true,
+      "version": "5.0.1"
+    },
+    "accelerate": {
+      "ok": true,
+      "version": "1.14.0"
+    },
+    "evaluate": {
+      "ok": true,
+      "version": "0.4.6"
+    },
+    "sentencepiece": {
+      "ok": true,
+      "version": "0.2.2"
+    },
+    "rouge_score": {
+      "ok": true,
+      "version": "unknown"
+    },
+    "bert_score": {
+      "ok": true,
+      "version": "0.3.12"
+    },
+    "pyarrow": {
+      "ok": true,
+      "version": "25.0.1"
+    },
+    "pandas": {
+      "ok": true,
+      "version": "2.3.3"
+    },
+    "numpy": {
+      "ok": true,
+      "version": "2.3.2"
+    },
+    "pyyaml": {
+      "ok": true,
+      "version": "6.0.3"
+    },
+    "huggingface_hub": {
+      "ok": true,
+      "version": "1.28.0"
+    }
+  },
+  "hardware": {
+    "cuda_available": false,
+    "gpu_name": null,
+    "cuda_version": null,
+    "bf16_supported": false,
+    "fp16_hardware_usable": null
+  },
+  "lora_verification": {
+    "total_params": 300520832,
+    "trainable_params": 344064,
+    "frozen_params": 300176768,
+    "trainable_pct_of_total": 0.11448923447676333,
+    "trainable_pct_of_non_embedding_backbone": 0.7808619111943875,
+    "non_embedding_backbone_params": 44062080,
+    "embedding_trainable_leak": [],
+    "lm_head_trainable_leak": [],
+    "non_lora_trainable_params": [],
+    "freezing_clean": true
+  },
+  "actual_total_params_pre_lora": 300176768,
+  "forward_and_generation": {
+    "forward_loss": 60.58558654785156,
+    "forward_loss_finite": true,
+    "generated_text": "<extra_id_0>."
+  },
+  "overall_status": "PASSED"
+}
