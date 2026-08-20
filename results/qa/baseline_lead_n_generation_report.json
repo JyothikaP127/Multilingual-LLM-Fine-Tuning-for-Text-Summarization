@@ -1,0 +1,34 @@
+{
+  "generated_at_utc": "2026-08-20T13:54:31.151162+00:00",
+  "n_values": [
+    1,
+    3
+  ],
+  "timing_by_language_and_n": {
+    "lead_1_english": {
+      "total_inference_time_sec": 0.1965334415435791,
+      "avg_inference_time_sec": 0.0003930668830871582
+    },
+    "lead_1_hindi": {
+      "total_inference_time_sec": 0.33593034744262695,
+      "avg_inference_time_sec": 0.0006718606948852539
+    },
+    "lead_1_telugu": {
+      "total_inference_time_sec": 0.8430044651031494,
+      "avg_inference_time_sec": 0.0016860089302062988
+    },
+    "lead_3_english": {
+      "total_inference_time_sec": 0.18554306030273438,
+      "avg_inference_time_sec": 0.00037108612060546877
+    },
+    "lead_3_hindi": {
+      "total_inference_time_sec": 0.3117976188659668,
+      "avg_inference_time_sec": 0.0006235952377319335
+    },
+    "lead_3_telugu": {
+      "total_inference_time_sec": 0.5393848419189453,
+      "avg_inference_time_sec": 0.0010787696838378906
+    }
+  },
+  "note": "Predictions only -- no ROUGE/BERTScore computed here. Run scripts/evaluate_predictions.py against the saved predictions CSV for metrics."
+}

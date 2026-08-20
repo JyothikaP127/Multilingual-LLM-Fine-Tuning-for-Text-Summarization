@@ -1,0 +1,7 @@
+# Full fine-tuning updates all ~172.1M parameters. Learning rate is tuned
+# separately from LoRA's (configs/lora.yaml) -- reusing one LR across both
+# methods would bias the comparison in the research write-up.
+optimization:
+  learning_rate: 5.0e-5
+  epochs: 4
+  warmup_ratio: 0.06

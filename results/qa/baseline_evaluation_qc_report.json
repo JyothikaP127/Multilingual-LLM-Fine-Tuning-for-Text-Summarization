@@ -1,0 +1,138 @@
+{
+  "generated_at_utc": "2026-08-20T14:31:14.152663+00:00",
+  "languages": {
+    "english": {
+      "zero_shot_count": 500,
+      "zero_shot_count_ok": true,
+      "zero_shot_ids_match_reference": true,
+      "zero_shot_missing_count": 0,
+      "zero_shot_empty_predictions": [],
+      "lead1_ids_match_reference": true,
+      "lead3_ids_match_reference": true
+    },
+    "hindi": {
+      "zero_shot_count": 500,
+      "zero_shot_count_ok": true,
+      "zero_shot_ids_match_reference": true,
+      "zero_shot_missing_count": 0,
+      "zero_shot_empty_predictions": [],
+      "lead1_ids_match_reference": true,
+      "lead3_ids_match_reference": true
+    },
+    "telugu": {
+      "zero_shot_count": 500,
+      "zero_shot_count_ok": true,
+      "zero_shot_ids_match_reference": true,
+      "zero_shot_missing_count": 0,
+      "zero_shot_empty_predictions": [],
+      "lead1_ids_match_reference": true,
+      "lead3_ids_match_reference": true
+    }
+  },
+  "sample_examples": {
+    "english": [
+      {
+        "id": "uk-scotland-glasgow-west-19544835",
+        "source_preview": "A Glasgow University survey found that some teenagers viewed terms such as \"ned\" (non-educated delinquent) or \"chav\" as a badge of pride. Those who did were not exclusively from deprived backgrounds, ",
+        "reference": "Young people from middle class backgrounds are also attracted to \"ned culture\", according to new research.",
+        "zero_shot": "<extra_id_0>-breakers",
+        "lead_1": "A Glasgow University survey found that some teenagers viewed terms such as \"ned\" (non-educated delinquent) or \"chav\" as a badge of pride.",
+        "lead_3": "A Glasgow University survey found that some teenagers viewed terms such as \"ned\" (non-educated delinquent) or \"chav\" as a badge of pride. Those who did were not exclusively from deprived backgrounds, but also came from affluent or middle-class families. A total of 3,194 15-year-olds from 22 schools in and around Glasgow were interviewed for the study."
+      },
+      {
+        "id": "entertainment-arts-44777798",
+        "source_preview": "The accident happened in Sardinia where the US actor is filming his latest TV series, Catch-22. A representative for the actor, 57, said he was treated and released from a hospital in the Sardinian ci",
+        "reference": "Hollywood star George Clooney was taken to hospital after suffering minor injuries in a collision involving his motorbike and a car.",
+        "zero_shot": "<extra_id_0>.com",
+        "lead_1": "The accident happened in Sardinia where the US actor is filming his latest TV series, Catch-22.",
+        "lead_3": "The accident happened in Sardinia where the US actor is filming his latest TV series, Catch-22. A representative for the actor, 57, said he was treated and released from a hospital in the Sardinian city of Olbia. \"He is recovering at his home and will be fine,\" the spokesperson continued."
+      },
+      {
+        "id": "business-26475437",
+        "source_preview": "Sales in the final three months of the financial year fell 10.6% to $5.87bn (£3.5bn), the retailer said in a statement. Staples has 1,846 stores in the US and Canada after closing 42 stores in 2013. T",
+        "reference": "US office supplier Staples said it will close 225 stores in North America, more than 10% of its presence, as shoppers move online and its sales slump.",
+        "zero_shot": "<extra_id_0>.com",
+        "lead_1": "Sales in the final three months of the financial year fell 10.6% to $5.87bn (£3.5bn), the retailer said in a statement.",
+        "lead_3": "Sales in the final three months of the financial year fell 10.6% to $5.87bn (£3.5bn), the retailer said in a statement. Staples has 1,846 stores in the US and Canada after closing 42 stores in 2013. The company said the closure will help it save $500m of costs a year by the end of 2015."
+      }
+    ],
+    "hindi": [
+      {
+        "id": "150121_from_waste_to_riches_pm",
+        "source_preview": "ब्राज़ील के सबसे बड़े शहर रियो डि जेनेरो की रहने वाली क्लीयोनिस बेंटो के साथ तो ऐसा ही हुआ. वो दक्षिण अमरीका के कूड़े के सबसे बड़े ढेर से फिर इस्तेमाल की जाने लायक़ चीज़ें चुन उन्हें बाज़ार में निहायत",
+        "reference": "बदबूदार और बेकार कूड़े के ढेर में से भी किसी को लाखों रुपए की चीज़ मिल सकती है और उसकी दुनिया बदल सकती है.",
+        "zero_shot": "<extra_id_0> दिया गया.",
+        "lead_1": "ब्राज़ील के सबसे बड़े शहर रियो डि जेनेरो की रहने वाली क्लीयोनिस बेंटो के साथ तो ऐसा ही हुआ.",
+        "lead_3": "ब्राज़ील के सबसे बड़े शहर रियो डि जेनेरो की रहने वाली क्लीयोनिस बेंटो के साथ तो ऐसा ही हुआ. वो दक्षिण अमरीका के कूड़े के सबसे बड़े ढेर से फिर इस्तेमाल की जाने लायक़ चीज़ें चुन उन्हें बाज़ार में निहायत ही कम क़ीमत पर बेच कर कुछ पैसे कमा लेती थीं. कूड़े से निकला सोने का गहना एक दिन उन्हें सड़े हुए खाने के डिब्बों के बीच कुछ चमकदार चीज़ दिखी."
+      },
+      {
+        "id": "050518_coach_interview",
+        "source_preview": "उम्मीदवार हैं - ऑस्ट्रेलिया के पूर्व खिलाड़ी ग्रेग चैपल और टॉम मूडी, वेस्टइंडीज़ के पूर्व ओपनर डेसमंड हेंस और 1983 में विश्व कप जीतने वाली भारतीय टीम के हीरो मोहिंदर अमरनाथ. चारों दावेदार बारी-बारी से",
+        "reference": "भारतीय क्रिकेट टीम के नए कोच के पद के लिए चारों उम्मीदवारों का इंटरव्यू आज दिल्ली में हो रहा है.",
+        "zero_shot": "<extra_id_0> के बारे में बताया.",
+        "lead_1": "उम्मीदवार हैं - ऑस्ट्रेलिया के पूर्व खिलाड़ी ग्रेग चैपल और टॉम मूडी, वेस्टइंडीज़ के पूर्व ओपनर डेसमंड हेंस और 1983 में विश्व कप जीतने वाली भारतीय टीम के हीरो मोहिंदर अमरनाथ.",
+        "lead_3": "उम्मीदवार हैं - ऑस्ट्रेलिया के पूर्व खिलाड़ी ग्रेग चैपल और टॉम मूडी, वेस्टइंडीज़ के पूर्व ओपनर डेसमंड हेंस और 1983 में विश्व कप जीतने वाली भारतीय टीम के हीरो मोहिंदर अमरनाथ. चारों दावेदार बारी-बारी से छह सदस्यों की चयन समिति के सामने उपस्थित हो रहे हैं. चयन समिति के सदस्य हैं - पूर्व भारतीय कप्तान एस वेंकटराघवन, सुनील गावस्कर और रवि शास्त्री तथा भारतीय क्रिकेट बोर्ड के पूर्व प्रमुख जगमोहन डालमिया, वर्तमान प्रमुख रणबीर सिंह महिंद्रा और बोर्ड सचिव एस के नायर."
+      },
+      {
+        "id": "040118_liberia_un",
+        "source_preview": "संयुक्त राष्ट्र ने पिछले साल लाइबेरिया में अपना अभियान शुरू किया था. उस समय एक शांति योजना के तहत तत्कालीन राष्ट्रपति चार्ल्स टेलर निर्वासन में चले गए थे और युद्ध रुका था. संयुक्त राष्ट्र ने राजधानी क",
+        "reference": "संयुक्त राष्ट्र के सैनिक पहली बार पूर्वी लाइबेरिया में तैनात किए गए हैं. इस तरह उनका नियंत्रण इस देश में और बढ़ गया है.",
+        "zero_shot": "<extra_id_0> कर रहे हैं.",
+        "lead_1": "संयुक्त राष्ट्र ने पिछले साल लाइबेरिया में अपना अभियान शुरू किया था.",
+        "lead_3": "संयुक्त राष्ट्र ने पिछले साल लाइबेरिया में अपना अभियान शुरू किया था. उस समय एक शांति योजना के तहत तत्कालीन राष्ट्रपति चार्ल्स टेलर निर्वासन में चले गए थे और युद्ध रुका था. संयुक्त राष्ट्र ने राजधानी को कुछ समय से नियंत्रण में कर रखा है मगर ग्रामीण क्षेत्रों में उसकी पहुँच सीमित ही रही है."
+      }
+    ],
+    "telugu": [
+      {
+        "id": "international-44401771",
+        "source_preview": "ఇండొనేషియాలోని పశ్చిమ కాలీమంటన్‌ రాష్ట్రంలో 2013లో 'ఇంటర్నేషనల్ యానిమల్ రెస్క్యూ(ఐఏఆర్)' సంస్థ ఈ ఘటనను చిత్రీకరించింది. ఈ వీడియోను ఇటీవలే విడుదల చేసింది. అడవులను నరికేస్తున్న ప్రాంతాల నుంచి ఒరాంగుటాన్",
+        "reference": "ప్రకృతికి, అభివృద్ధికి మధ్య జరుగుతున్న ఘర్షణ తీవ్రతను చాటే అరుదైన దృశ్యమిది.",
+        "zero_shot": "<extra_id_0>.com",
+        "lead_1": "ఇండొనేషియాలోని పశ్చిమ కాలీమంటన్‌ రాష్ట్రంలో 2013లో 'ఇంటర్నేషనల్ యానిమల్ రెస్క్యూ(ఐఏఆర్)' సంస్థ ఈ ఘటనను చిత్రీకరించింది.",
+        "lead_3": "ఇండొనేషియాలోని పశ్చిమ కాలీమంటన్‌ రాష్ట్రంలో 2013లో 'ఇంటర్నేషనల్ యానిమల్ రెస్క్యూ(ఐఏఆర్)' సంస్థ ఈ ఘటనను చిత్రీకరించింది. ఈ వీడియోను ఇటీవలే విడుదల చేసింది. అడవులను నరికేస్తున్న ప్రాంతాల నుంచి ఒరాంగుటాన్‌లను సురక్షిత ప్రాంతాలకు తరలించేందుకు ఐఏఆర్ కృషి చేస్తోంది."
+      },
+      {
+        "id": "india-44136008",
+        "source_preview": "భారతదేశ చరిత్రను పరిశీలిస్తే, రాష్ట్రాలలో ప్రభుత్వాల ఏర్పాటులో గవర్నర్లు నిర్వహించిన పాత్రతో చాలా పేజీలు నిండిపోయాయి. చాలా కాలంగా ప్రభుత్వాల ఏర్పాటులో రాజ్‌భవన్ కీలకపాత్ర పోషిస్తోంది. ఆంధ్రప్రదేశ్‌లో ",
+        "reference": "కర్ణాటక ఎన్నికల్లో ఏ పార్టీకీ స్పష్టమైన మెజారిటీ రాలేదు. అక్కడ బీజేపీ, కాంగ్రెస్-జేడీఎస్‌లు ప్రభుత్వాన్ని ఏర్పాటు చేయడానికి అవకాశం ఇవ్వాలని గవర్నర్‌ను కోరుతున్నాయి. ఇతర పార్టీల ఎమ్మెల్యేలను తమ వైపు లాక్కునేందుకు ప్రయత్నాలు జరుగుతున్న నేపథ్యంలో గవర్నర్ ఇప్పుడు ప్రభుత్వ ఏర్పాటుకు ఎవరికి అవకాశం ఇస్తారు అన్న విషయం ఆసక్తి రేకెత్తిస్తోంది.",
+        "zero_shot": "<extra_id_0> లాల్",
+        "lead_1": "భారతదేశ చరిత్రను పరిశీలిస్తే, రాష్ట్రాలలో ప్రభుత్వాల ఏర్పాటులో గవర్నర్లు నిర్వహించిన పాత్రతో చాలా పేజీలు నిండిపోయాయి.",
+        "lead_3": "భారతదేశ చరిత్రను పరిశీలిస్తే, రాష్ట్రాలలో ప్రభుత్వాల ఏర్పాటులో గవర్నర్లు నిర్వహించిన పాత్రతో చాలా పేజీలు నిండిపోయాయి. చాలా కాలంగా ప్రభుత్వాల ఏర్పాటులో రాజ్‌భవన్ కీలకపాత్ర పోషిస్తోంది. ఆంధ్రప్రదేశ్‌లో రామ్‌లాల్, ఉత్తరప్రదేశ్‌లో రొమేష్ భండారీ, జార్ఖండ్‌లో సిబ్తే రజీ, బీహార్‌లో బూటాసింగ్, కర్ణాటకలో హంసరాజ్ భరద్వాజ్.."
+      },
+      {
+        "id": "india-41766382",
+        "source_preview": "ఒక ప్రభుత్వ ఆసుపత్రిలో ఆయన మృతి చెందారని పీటీఐ వార్తా సంస్థ తెలిపింది. పదుల వేల కోట్ల రూపాయల స్టాంపు పేపర్ల కుంభకోణం 1990వ దశకం ఆరంభంలో మొదలైంది. మొదట తెల్గీకి స్టాంపు పేపర్లు అమ్మే లైసెన్స్ ఉండేది. ఆ",
+        "reference": "కోట్లాది రూపాయల స్టాంపు పేపర్ల కుంభకోణం కేసులో శిక్ష అనుభవిస్తున్న అబ్దుల్ కరీం తెల్గీ బెంగళూరులో మృతి చెందారు. మెనింజైటిస్‌తో బాధపడుతున్న తెల్గీ కొంత కాలంగా ఆస్పత్రిలో చికిత్స పొందుతున్నారు.",
+        "zero_shot": "<extra_id_0>..",
+        "lead_1": "ఒక ప్రభుత్వ ఆసుపత్రిలో ఆయన మృతి చెందారని పీటీఐ వార్తా సంస్థ తెలిపింది.",
+        "lead_3": "ఒక ప్రభుత్వ ఆసుపత్రిలో ఆయన మృతి చెందారని పీటీఐ వార్తా సంస్థ తెలిపింది. పదుల వేల కోట్ల రూపాయల స్టాంపు పేపర్ల కుంభకోణం 1990వ దశకం ఆరంభంలో మొదలైంది. మొదట తెల్గీకి స్టాంపు పేపర్లు అమ్మే లైసెన్స్ ఉండేది."
+      }
+    ]
+  },
+  "zero_shot_anomalies": {
+    "english": {
+      "n": 500,
+      "very_short_count": 30,
+      "sentinel_token_count": 500,
+      "repetitive_count": 0,
+      "script_mismatch_count": 0,
+      "near_verbatim_copy_count": 0
+    },
+    "hindi": {
+      "n": 500,
+      "very_short_count": 19,
+      "sentinel_token_count": 500,
+      "repetitive_count": 0,
+      "script_mismatch_count": 19,
+      "near_verbatim_copy_count": 0
+    },
+    "telugu": {
+      "n": 500,
+      "very_short_count": 376,
+      "sentinel_token_count": 500,
+      "repetitive_count": 0,
+      "script_mismatch_count": 380,
+      "near_verbatim_copy_count": 0
+    }
+  }
+}

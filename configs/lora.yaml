@@ -1,0 +1,45 @@
+lora:
+  r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  # Verified via transformers==5.14.1 MT5Attention source AND PEFT 0.20.0's own
+  # TRANSFORMERS_MODELS_TO_LORA_TARGET_MODULES_MAPPING (both list ["q", "v"]
+  # for t5/mt5). Do not copy q_proj/v_proj from LLaMA-family configs.
+  target_modules: ["q", "v"]
+  task_type: SEQ_2_SEQ_LM
+  bias: none
+
+# r=4/8/16 ablation planned; alpha kept at 2x r for each. NOT run yet.
+rank_ablation: [4, 8, 16]
+
+# Full-run training config. None of these are hard-coded into
+# src/train/train_lora.py -- the script reads all of them from here.
+training:
+  learning_rate: 1.0e-3
+  num_train_epochs: 1
+  warmup_ratio: 0.06
+  weight_decay: 0.0
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 4
+  precision: auto      # auto -> bf16 if CUDA+bf16-capable, else fp32; never auto-selects fp16
+  logging_steps: 10
+  max_source_length: 768   # must match configs/data.yaml; duplicated here so the
+  max_target_length: 128   # training script's hyperparameter set is self-contained
+
+# Tiny pipeline-validation run only -- NOT the full 6,000-example experiment.
+# Uses a small deterministic PREFIX of the project's real canonical
+# train/validation splits (same ids everywhere else), not a separately
+# re-sampled subset, so "smoke test" data is a genuine subset of the real
+# training data.
+smoke_test:
+  train_examples_per_language: 7   # 21 total, within the requested ~20-50 range
+  val_examples_per_language: 3     # 9 total -- just enough to exercise the eval path
+  num_train_epochs: 1
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 1
+  precision: fp32       # local CPU smoke test always runs fp32 (see configs/hardware/local_cpu.yaml)
+  logging_steps: 1
+  output_dir: results/checkpoints/smoke_test
+
+output:
+  full_run_dir: results/checkpoints/lora_full   # NOT used until the full run is approved

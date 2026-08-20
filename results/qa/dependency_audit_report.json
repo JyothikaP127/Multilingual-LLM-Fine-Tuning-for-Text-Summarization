@@ -1,0 +1,127 @@
+{
+  "generated_at_utc": "2026-08-20T11:50:37.506226+00:00",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "torch_version": "2.13.0+cpu",
+  "torch_cuda_build_version": null,
+  "cuda_available": false,
+  "gpu_name": null,
+  "gpu_total_memory_gb": null,
+  "cuda_bf16_supported": false,
+  "fp16_note": "CPU-only: fp16 has no meaningful hardware acceleration on this machine; not recommended regardless of the mT5 NaN-risk caveat.",
+  "total_ram_gb": 15.72,
+  "available_ram_gb": 2.14,
+  "pip_check": {
+    "returncode": 0,
+    "stdout": "No broken requirements found.",
+    "stderr": "",
+    "clean": true
+  },
+  "dependency_audit": [
+    {
+      "package": "torch",
+      "installed_version": "2.13.0+cpu",
+      "pinned_version": null,
+      "matches_pin": null,
+      "currently_range_or_unpinned": true
+    },
+    {
+      "package": "transformers",
+      "installed_version": "5.14.1",
+      "pinned_version": "5.14.1",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "peft",
+      "installed_version": "0.20.0",
+      "pinned_version": "0.20.0",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "datasets",
+      "installed_version": "5.0.1",
+      "pinned_version": "5.0.1",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "accelerate",
+      "installed_version": "1.14.0",
+      "pinned_version": "1.14.0",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "evaluate",
+      "installed_version": "0.4.6",
+      "pinned_version": "0.4.6",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "sentencepiece",
+      "installed_version": "0.2.2",
+      "pinned_version": "0.2.2",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "protobuf",
+      "installed_version": "7.35.1",
+      "pinned_version": "7.35.1",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "rouge_score",
+      "installed_version": "0.1.2",
+      "pinned_version": "0.1.2",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "bert_score",
+      "installed_version": "0.3.13",
+      "pinned_version": "0.3.13",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "pyarrow",
+      "installed_version": "25.0.1",
+      "pinned_version": "25.0.1",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "numpy",
+      "installed_version": "2.3.2",
+      "pinned_version": "2.3.2",
+      "matches_pin": true,
+      "currently_range_or_unpinned": false
+    },
+    {
+      "package": "pandas",
+      "installed_version": "2.3.3",
+      "pinned_version": null,
+      "matches_pin": null,
+      "currently_range_or_unpinned": true
+    },
+    {
+      "package": "pyyaml",
+      "installed_version": "6.0.3",
+      "pinned_version": null,
+      "matches_pin": null,
+      "currently_range_or_unpinned": true
+    },
+    {
+      "package": "huggingface_hub",
+      "installed_version": "1.28.0",
+      "pinned_version": null,
+      "matches_pin": null,
+      "currently_range_or_unpinned": true
+    }
+  ]
+}

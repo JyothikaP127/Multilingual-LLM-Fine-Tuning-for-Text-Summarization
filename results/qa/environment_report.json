@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-08-20T11:28:52.092875+00:00",
+  "hardware": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python_version": "3.11.9",
+    "cpu_count": 12,
+    "device": "cpu",
+    "cuda_available": false,
+    "gpu_name": null,
+    "gpu_total_memory_gb": null,
+    "cuda_bf16_supported": false,
+    "torch_version": "2.13.0+cpu"
+  },
+  "memory_disk": {
+    "total_ram_gb": 15.72,
+    "available_ram_gb": 3.81,
+    "disk_free_gb": 33.16
+  },
+  "installed_versions": {
+    "transformers": "5.14.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "accelerate": "1.14.0",
+    "evaluate": "0.4.6",
+    "sentencepiece": "0.2.2",
+    "protobuf": "7.35.1",
+    "rouge-score": "0.1.2",
+    "bert-score": "0.3.13",
+    "pyarrow": "25.0.1",
+    "numpy": "2.3.2",
+    "torch": "2.13.0+cpu"
+  },
+  "pinned_versions": {
+    "transformers": "5.14.1",
+    "peft": "0.20.0",
+    "datasets": "5.0.1",
+    "accelerate": "1.14.0",
+    "evaluate": "0.4.6",
+    "sentencepiece": "0.2.2",
+    "protobuf": "7.35.1",
+    "rouge-score": "0.1.2",
+    "bert-score": "0.3.13",
+    "pyarrow": "25.0.1",
+    "numpy": "2.3.2"
+  },
+  "version_mismatches": {}
+}

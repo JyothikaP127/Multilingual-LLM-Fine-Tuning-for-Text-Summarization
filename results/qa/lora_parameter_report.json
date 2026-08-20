@@ -1,0 +1,25 @@
+{
+  "generated_at_utc": "2026-08-20T15:08:53.512781+00:00",
+  "total_params": 300520832,
+  "trainable_params": 344064,
+  "frozen_params": 300176768,
+  "trainable_pct_of_total": 0.11448923447676333,
+  "trainable_pct_of_non_embedding_backbone": 0.7808619111943875,
+  "non_embedding_backbone_params": 44062080,
+  "embedding_trainable_leak": [],
+  "lm_head_trainable_leak": [],
+  "non_lora_trainable_params": [],
+  "freezing_clean": true,
+  "model_name": "google/mt5-small",
+  "lora_config": {
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q",
+      "v"
+    ],
+    "task_type": "SEQ_2_SEQ_LM",
+    "bias": "none"
+  }
+}

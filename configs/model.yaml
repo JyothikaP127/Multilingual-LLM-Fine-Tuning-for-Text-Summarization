@@ -1,0 +1,17 @@
+model_name_or_path: google/mt5-small
+tokenizer_name_or_path: google/mt5-small
+architecture: mt5
+
+# Verified against the transformers==5.14.1 source for MT5Attention /
+# MT5DenseGatedActDense (see results/qa/model_architecture_report.json for the
+# live introspection this project actually ran):
+#   attention projections : q, k, v, o        (NOT q_proj / v_proj)
+#   feed-forward (gated-gelu): wi_0, wi_1, wo
+#
+# tie_word_embeddings is forced True by transformers' MT5Config regardless of
+# what config.json on the Hub says, so the input embedding and the LM head
+# share one ~128.1M-parameter tensor (~74% of the model's ~172.1M total params).
+notes: >
+  Parameter-count and LoRA target-module decisions in configs/lora.yaml are
+  derived from this file's verified facts, not assumed from other model
+  families (e.g. LLaMA-style q_proj/v_proj naming does NOT apply here).

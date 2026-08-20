@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+# torch is intentionally NOT listed here — install it separately first, since
+# the correct wheel depends on the machine (CPU-only laptop vs. CUDA cloud GPU):
+#
+#   Local CPU dev/smoke-testing:
+#     pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cpu
+#
+#   Cloud GPU (Colab / Kaggle): torch is already preinstalled with a CUDA build;
+#   no action needed unless you must match an exact version:
+#     pip install torch==2.13.0 --index-url https://download.pytorch.org/whl/cu121
+#
+# Then install everything else:
+#   pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+
+# Verified as a mutually compatible set on 2026-08-20: transformers 5.14.1 was
+# checked directly against MT5ForConditionalGeneration + peft.get_peft_model
+# (LoRA on q/v) + Seq2SeqTrainer/Seq2SeqTrainingArguments before pinning.
+transformers==5.14.1
+peft==0.20.0
+datasets==5.0.1
+accelerate==1.14.0
+evaluate==0.4.6
+sentencepiece==0.2.2
+protobuf==7.35.1
+
+rouge_score==0.1.2
+bert_score==0.3.13
+
+pyarrow==25.0.1
+pandas==2.3.3
+numpy==2.3.2
+pyyaml==6.0.3
+huggingface_hub==1.28.0

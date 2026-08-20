@@ -1,0 +1,220 @@
+{
+  "generated_at_utc": "2026-08-20T12:07:50.905106+00:00",
+  "languages": {
+    "english": {
+      "split_sizes": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "cleaning_stats": {
+        "train": {
+          "language": "english",
+          "split": "train",
+          "raw_count": 306522,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 306522,
+          "sampled_count": 2000
+        },
+        "validation": {
+          "language": "english",
+          "split": "validation",
+          "raw_count": 11535,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 11535,
+          "sampled_count": 300
+        },
+        "test": {
+          "language": "english",
+          "split": "test",
+          "raw_count": 11535,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 11535,
+          "sampled_count": 500
+        }
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "unicode_script_check_failures": 0,
+      "unicode_script_check_failure_ids": [],
+      "excessive_length_count": 1,
+      "excessive_length_ids": [
+        "sinhala.041108_post_bag"
+      ],
+      "label_correctness_check": {
+        "total_examples": 2800,
+        "pad_id_leaked_into_labels": 0,
+        "all_ignore_index_at_pad_positions": true,
+        "empty_decoded_targets": 0
+      }
+    },
+    "hindi": {
+      "split_sizes": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "cleaning_stats": {
+        "train": {
+          "language": "hindi",
+          "split": "train",
+          "raw_count": 70778,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 1,
+          "valid_count": 70777,
+          "sampled_count": 2000
+        },
+        "validation": {
+          "language": "hindi",
+          "split": "validation",
+          "raw_count": 8847,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 8847,
+          "sampled_count": 300
+        },
+        "test": {
+          "language": "hindi",
+          "split": "test",
+          "raw_count": 8847,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 8847,
+          "sampled_count": 500
+        }
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "unicode_script_check_failures": 0,
+      "unicode_script_check_failure_ids": [],
+      "excessive_length_count": 13,
+      "excessive_length_ids": [
+        "india-55162491",
+        "india-54473640",
+        "india-57130186",
+        "india-53019098",
+        "magazine-44948645",
+        "india-51459397",
+        "070619_ekmulakat_lata",
+        "vert-fut-40771533",
+        "india-55832396",
+        "sport-55111011",
+        "080524_ekmulaqat_kiranbedi",
+        "india-52536821",
+        "061201_kahani_akhilesh"
+      ],
+      "label_correctness_check": {
+        "total_examples": 2800,
+        "pad_id_leaked_into_labels": 0,
+        "all_ignore_index_at_pad_positions": true,
+        "empty_decoded_targets": 0
+      }
+    },
+    "telugu": {
+      "split_sizes": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "cleaning_stats": {
+        "train": {
+          "language": "telugu",
+          "split": "train",
+          "raw_count": 10421,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 10421,
+          "sampled_count": 2000
+        },
+        "validation": {
+          "language": "telugu",
+          "split": "validation",
+          "raw_count": 1302,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 1302,
+          "sampled_count": 300
+        },
+        "test": {
+          "language": "telugu",
+          "split": "test",
+          "raw_count": 1302,
+          "missing_field_removed": 0,
+          "empty_text_removed": 0,
+          "empty_summary_removed": 0,
+          "valid_count": 1302,
+          "sampled_count": 500
+        }
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "unicode_script_check_failures": 0,
+      "unicode_script_check_failure_ids": [],
+      "excessive_length_count": 12,
+      "excessive_length_ids": [
+        "india-50135671",
+        "india-54273878",
+        "international-46916259",
+        "international-41812924",
+        "international-55021955",
+        "international-56098824",
+        "international-54905304",
+        "india-48754167",
+        "india-56629329",
+        "india-52554623",
+        "india-47984335",
+        "international-53497698"
+      ],
+      "label_correctness_check": {
+        "total_examples": 2800,
+        "pad_id_leaked_into_labels": 0,
+        "all_ignore_index_at_pad_positions": true,
+        "empty_decoded_targets": 0
+      }
+    }
+  }
+}

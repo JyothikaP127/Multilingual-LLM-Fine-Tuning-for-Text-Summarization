@@ -1,0 +1,78 @@
+{
+  "generated_at_utc": "2026-08-20T14:50:09.083286+00:00",
+  "predictions_file": "C:\\Users\\jyoth\\OneDrive\\Desktop\\project\\results\\qualitative_samples\\baseline_lead_n_predictions.csv",
+  "metrics_rows": [
+    {
+      "model": "lead_1",
+      "language": "english",
+      "rouge1": 0.24014772109614474,
+      "rouge2": 0.03764848130301476,
+      "rougeL": 0.18146543362316145,
+      "bertscore_f1": 0.6914519009590149,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_1",
+      "language": "hindi",
+      "rouge1": 0.30095902565773913,
+      "rouge2": 0.12280968321572587,
+      "rougeL": 0.21728444973952862,
+      "bertscore_f1": 0.707431597828865,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_1",
+      "language": "telugu",
+      "rouge1": 0.21413388934106242,
+      "rouge2": 0.09331656471437959,
+      "rougeL": 0.16539124634785132,
+      "bertscore_f1": 0.681477542936802,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_1",
+      "language": "overall",
+      "rouge1": 0.2517468786983154,
+      "rouge2": 0.08459157641104006,
+      "rougeL": 0.18804704323684712,
+      "bertscore_f1": 0.693453680574894,
+      "n_examples": 1500
+    },
+    {
+      "model": "lead_3",
+      "language": "english",
+      "rouge1": 0.24071741591795276,
+      "rouge2": 0.05636362045454156,
+      "rougeL": 0.16430659961386773,
+      "bertscore_f1": 0.6855457707643509,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_3",
+      "language": "hindi",
+      "rouge1": 0.30023260310888195,
+      "rouge2": 0.13476468510643422,
+      "rougeL": 0.19355818302977834,
+      "bertscore_f1": 0.7022071672677994,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_3",
+      "language": "telugu",
+      "rouge1": 0.2532133211032973,
+      "rouge2": 0.11004678705471692,
+      "rougeL": 0.1692334695764589,
+      "bertscore_f1": 0.6876260516643524,
+      "n_examples": 500
+    },
+    {
+      "model": "lead_3",
+      "language": "overall",
+      "rouge1": 0.26472111337671067,
+      "rouge2": 0.10039169753856424,
+      "rougeL": 0.17569941740670167,
+      "bertscore_f1": 0.6917929965655009,
+      "n_examples": 1500
+    }
+  ]
+}

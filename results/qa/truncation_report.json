@@ -1,0 +1,82 @@
+{
+  "generated_at_utc": "2026-08-20T11:31:52.741894+00:00",
+  "max_source_length": 512,
+  "max_target_length": 128,
+  "languages": {
+    "english": {
+      "n_examples_all_splits": 2800,
+      "source_text": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 697.4257142857143,
+        "median": 563.0,
+        "p90": 1324.0,
+        "p95": 1554.0,
+        "max": 7674,
+        "truncated_count": 1548,
+        "truncated_pct": 55.285714285714285
+      },
+      "target_summary": {
+        "field": "target_summary",
+        "n": 2800,
+        "mean": 34.2875,
+        "median": 33.0,
+        "p90": 44.0,
+        "p95": 50.0,
+        "max": 146,
+        "truncated_count": 2,
+        "truncated_pct": 0.07142857142857142
+      }
+    },
+    "hindi": {
+      "n_examples_all_splits": 2800,
+      "source_text": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1079.1925,
+        "median": 808.0,
+        "p90": 2107.0,
+        "p95": 2640.0,
+        "max": 9763,
+        "truncated_count": 2120,
+        "truncated_pct": 75.71428571428571
+      },
+      "target_summary": {
+        "field": "target_summary",
+        "n": 2800,
+        "mean": 57.22607142857143,
+        "median": 55.0,
+        "p90": 81.0,
+        "p95": 91.0,
+        "max": 166,
+        "truncated_count": 13,
+        "truncated_pct": 0.4642857142857143
+      }
+    },
+    "telugu": {
+      "n_examples_all_splits": 2800,
+      "source_text": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1433.7103571428572,
+        "median": 1300.0,
+        "p90": 2553.0,
+        "p95": 3045.0,
+        "max": 8434,
+        "truncated_count": 2462,
+        "truncated_pct": 87.92857142857143
+      },
+      "target_summary": {
+        "field": "target_summary",
+        "n": 2800,
+        "mean": 62.34321428571429,
+        "median": 58.0,
+        "p90": 96.0,
+        "p95": 111.0,
+        "max": 244,
+        "truncated_count": 54,
+        "truncated_pct": 1.9285714285714286
+      }
+    }
+  }
+}

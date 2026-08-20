@@ -1,0 +1,42 @@
+{
+  "generated_at_utc": "2026-08-20T14:34:48.784428+00:00",
+  "predictions_file": "C:\\Users\\jyoth\\OneDrive\\Desktop\\project\\results\\qualitative_samples\\baseline_zero_shot_predictions.csv",
+  "metrics_rows": [
+    {
+      "model": "zero_shot_mt5_small",
+      "language": "english",
+      "rouge1": 0.09361908295611165,
+      "rouge2": 0.01819531149141369,
+      "rougeL": 0.0868951274011501,
+      "bertscore_f1": 0.586739823102951,
+      "n_examples": 500
+    },
+    {
+      "model": "zero_shot_mt5_small",
+      "language": "hindi",
+      "rouge1": 0.08558869427417738,
+      "rouge2": 0.025964366436191034,
+      "rougeL": 0.08035760349861815,
+      "bertscore_f1": 0.5951864387989044,
+      "n_examples": 500
+    },
+    {
+      "model": "zero_shot_mt5_small",
+      "language": "telugu",
+      "rouge1": 0.05909073616422262,
+      "rouge2": 0.007023100331708298,
+      "rougeL": 0.05830617988417707,
+      "bertscore_f1": 0.5409806036353111,
+      "n_examples": 500
+    },
+    {
+      "model": "zero_shot_mt5_small",
+      "language": "overall",
+      "rouge1": 0.07943283779817055,
+      "rouge2": 0.017060926086437674,
+      "rougeL": 0.07518630359464844,
+      "bertscore_f1": 0.5743022885123888,
+      "n_examples": 1500
+    }
+  ]
+}

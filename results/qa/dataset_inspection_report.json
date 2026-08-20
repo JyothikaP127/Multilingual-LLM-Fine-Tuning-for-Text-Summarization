@@ -1,0 +1,93 @@
+{
+  "generated_at_utc": "2026-08-20T11:31:52.740894+00:00",
+  "revision": "ab04842511fc357feae53281fd104aa3c36dff07",
+  "license": "cc-by-nc-sa-4.0",
+  "split_sizes": {
+    "train": 2000,
+    "validation": 300,
+    "test": 500
+  },
+  "languages": {
+    "english": {
+      "rows_per_split": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "columns": [
+        "id",
+        "summary",
+        "text",
+        "title",
+        "url"
+      ]
+    },
+    "hindi": {
+      "rows_per_split": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "columns": [
+        "id",
+        "summary",
+        "text",
+        "title",
+        "url"
+      ]
+    },
+    "telugu": {
+      "rows_per_split": {
+        "train": 2000,
+        "validation": 300,
+        "test": 500
+      },
+      "id_overlap_check": {
+        "duplicates_within_split": {
+          "train": 0,
+          "validation": 0,
+          "test": 0
+        },
+        "pairwise_id_overlap_count": {
+          "train_vs_validation": 0,
+          "train_vs_test": 0,
+          "validation_vs_test": 0
+        },
+        "clean": true
+      },
+      "columns": [
+        "id",
+        "summary",
+        "text",
+        "title",
+        "url"
+      ]
+    }
+  }
+}

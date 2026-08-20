@@ -1,0 +1,124 @@
+{
+  "generated_at_utc": "2026-08-20T11:39:00.851938+00:00",
+  "thresholds": [
+    512,
+    768,
+    1024
+  ],
+  "languages": {
+    "english": {
+      "512": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 697.4257142857143,
+        "median": 563.0,
+        "p90": 1324.0,
+        "p95": 1554.0,
+        "max": 7674,
+        "truncated_count": 1548,
+        "truncated_pct": 55.285714285714285,
+        "fits_completely_pct": 44.714285714285715
+      },
+      "768": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 697.4257142857143,
+        "median": 563.0,
+        "p90": 1324.0,
+        "p95": 1554.0,
+        "max": 7674,
+        "truncated_count": 952,
+        "truncated_pct": 34.0,
+        "fits_completely_pct": 66.0
+      },
+      "1024": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 697.4257142857143,
+        "median": 563.0,
+        "p90": 1324.0,
+        "p95": 1554.0,
+        "max": 7674,
+        "truncated_count": 548,
+        "truncated_pct": 19.571428571428573,
+        "fits_completely_pct": 80.42857142857143
+      }
+    },
+    "hindi": {
+      "512": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1079.1925,
+        "median": 808.0,
+        "p90": 2107.0,
+        "p95": 2640.0,
+        "max": 9763,
+        "truncated_count": 2120,
+        "truncated_pct": 75.71428571428571,
+        "fits_completely_pct": 24.285714285714292
+      },
+      "768": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1079.1925,
+        "median": 808.0,
+        "p90": 2107.0,
+        "p95": 2640.0,
+        "max": 9763,
+        "truncated_count": 1474,
+        "truncated_pct": 52.642857142857146,
+        "fits_completely_pct": 47.357142857142854
+      },
+      "1024": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1079.1925,
+        "median": 808.0,
+        "p90": 2107.0,
+        "p95": 2640.0,
+        "max": 9763,
+        "truncated_count": 1062,
+        "truncated_pct": 37.92857142857143,
+        "fits_completely_pct": 62.07142857142857
+      }
+    },
+    "telugu": {
+      "512": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1433.7103571428572,
+        "median": 1300.0,
+        "p90": 2553.0,
+        "p95": 3045.0,
+        "max": 8434,
+        "truncated_count": 2462,
+        "truncated_pct": 87.92857142857143,
+        "fits_completely_pct": 12.07142857142857
+      },
+      "768": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1433.7103571428572,
+        "median": 1300.0,
+        "p90": 2553.0,
+        "p95": 3045.0,
+        "max": 8434,
+        "truncated_count": 2142,
+        "truncated_pct": 76.5,
+        "fits_completely_pct": 23.5
+      },
+      "1024": {
+        "field": "source_text",
+        "n": 2800,
+        "mean": 1433.7103571428572,
+        "median": 1300.0,
+        "p90": 2553.0,
+        "p95": 3045.0,
+        "max": 8434,
+        "truncated_count": 1759,
+        "truncated_pct": 62.82142857142857,
+        "fits_completely_pct": 37.17857142857143
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+hardware_profile: local_cpu_smoketest
+
+device: cpu
+# No AVX-512/AMX on this development machine (Intel Iris Xe iGPU, no CUDA) so
+# bf16 has no hardware acceleration locally -- fp32 is the only sensible choice.
+precision: fp32
+
+batch_size: 2
+gradient_accumulation_steps: 1
+
+# This profile is for pipeline validation only, not real experiments:
+# a single real forward+backward step (batch=4, src=512, tgt=128, fp32) was
+# measured at ~124s on this machine, which makes anything beyond a tiny smoke
+# test impractical here. See results/qa/environment_report.json.
+smoke_test:
+  train_examples_per_language: 20
+  max_source_length: 128
+  max_target_length: 32
+  epochs: 1

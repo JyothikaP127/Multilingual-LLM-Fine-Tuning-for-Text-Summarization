@@ -1,0 +1,45 @@
+dataset:
+  hub_id: csebuetnlp/xlsum
+  # Loaded from the Hub's auto-converted Parquet revision, not the legacy
+  # trust_remote_code loading script. Pinned to an exact commit (rather than
+  # the mutable `refs/convert/parquet` ref) so the dataset snapshot used by
+  # this project cannot silently change underneath it.
+  revision: ab04842511fc357feae53281fd104aa3c36dff07
+  license: cc-by-nc-sa-4.0
+  citation: >
+    Hasan et al., "XL-Sum: Large-Scale Multilingual Abstractive Summarization
+    for 44 Languages", Findings of ACL-IJCNLP 2021.
+
+  languages:
+    - config_name: english
+      iso_code: en
+    - config_name: hindi
+      iso_code: hi
+    - config_name: telugu
+      iso_code: te
+
+  # Balanced across languages; Telugu (the scarcest of the three in XL-Sum,
+  # ~10.4k train rows total) comfortably covers this sample size.
+  split_sizes:
+    train: 2000
+    validation: 300
+    test: 500
+
+  sampling_seed: 42
+
+preprocessing:
+  # Set to 768 (2026-08-20) after the controlled 512/768/1024 comparison in
+  # results/qa/truncation_comparison.{csv,json}: 512 truncated a majority of
+  # examples in ALL THREE languages (55.3/75.7/87.9%), 1024 costs roughly
+  # 2-4x the compute of 512 while Telugu remains majority-truncated (62.8%)
+  # regardless. 768 is the practical information/compute trade-off.
+  #
+  # IMPORTANT: 768 does NOT solve cross-language truncation disparity -- it
+  # is a measured, documented limitation, not an assumption:
+  #   English 34.0% truncated | Hindi 52.6% truncated | Telugu 76.5% truncated
+  # The Telugu/English truncation-rate ratio actually widens as this value
+  # increases (1.59x at 512 -> 2.25x at 768 -> 3.21x at 1024), because
+  # Telugu's median article (1300 tokens) exceeds even the 1024 cap tested.
+  max_source_length: 768
+  max_target_length: 128
+  truncation_report_dir: results/qa

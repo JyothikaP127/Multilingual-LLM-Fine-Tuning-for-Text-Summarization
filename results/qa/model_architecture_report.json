@@ -1,0 +1,161 @@
+{
+  "generated_at_utc": "2026-08-20T11:53:46.857302+00:00",
+  "model_name": "google/mt5-small",
+  "config": {
+    "transformers_version": "5.14.1",
+    "architectures": [
+      "MT5ForConditionalGeneration"
+    ],
+    "output_hidden_states": false,
+    "return_dict": true,
+    "dtype": null,
+    "chunk_size_feed_forward": 0,
+    "is_encoder_decoder": true,
+    "id2label": {
+      "0": "LABEL_0",
+      "1": "LABEL_1"
+    },
+    "label2id": {
+      "LABEL_0": 0,
+      "LABEL_1": 1
+    },
+    "problem_type": null,
+    "vocab_size": 250112,
+    "d_model": 512,
+    "d_kv": 64,
+    "d_ff": 1024,
+    "num_layers": 8,
+    "num_decoder_layers": 8,
+    "num_heads": 6,
+    "relative_attention_num_buckets": 32,
+    "relative_attention_max_distance": 128,
+    "dropout_rate": 0.1,
+    "layer_norm_epsilon": 1e-06,
+    "initializer_factor": 1.0,
+    "feed_forward_proj": "gated-gelu",
+    "use_cache": false,
+    "tie_word_embeddings": true,
+    "bos_token_id": null,
+    "pad_token_id": 0,
+    "eos_token_id": 1,
+    "decoder_start_token_id": 0,
+    "classifier_dropout": 0.0,
+    "is_decoder": false,
+    "dense_act_fn": "gelu_new",
+    "is_gated_act": true,
+    "_name_or_path": "",
+    "model_type": "mt5",
+    "tokenizer_class": "T5Tokenizer",
+    "output_attentions": false
+  },
+  "linear_module_count": 145,
+  "attention_projection_suffixes": {
+    "q": 24,
+    "k": 24,
+    "v": 24,
+    "o": 24,
+    "wi_0": 16,
+    "wi_1": 16,
+    "wo": 16,
+    "lm_head": 1
+  },
+  "sample_module_names": {
+    "q": [
+      "encoder.block.0.layer.0.SelfAttention.q",
+      "encoder.block.1.layer.0.SelfAttention.q"
+    ],
+    "k": [
+      "encoder.block.0.layer.0.SelfAttention.k",
+      "encoder.block.1.layer.0.SelfAttention.k"
+    ],
+    "v": [
+      "encoder.block.0.layer.0.SelfAttention.v",
+      "encoder.block.1.layer.0.SelfAttention.v"
+    ],
+    "o": [
+      "encoder.block.0.layer.0.SelfAttention.o",
+      "encoder.block.1.layer.0.SelfAttention.o"
+    ],
+    "wi_0": [
+      "encoder.block.0.layer.1.DenseReluDense.wi_0",
+      "encoder.block.1.layer.1.DenseReluDense.wi_0"
+    ],
+    "wi_1": [
+      "encoder.block.0.layer.1.DenseReluDense.wi_1",
+      "encoder.block.1.layer.1.DenseReluDense.wi_1"
+    ],
+    "wo": [
+      "encoder.block.0.layer.1.DenseReluDense.wo",
+      "encoder.block.1.layer.1.DenseReluDense.wo"
+    ],
+    "lm_head": [
+      "lm_head"
+    ]
+  },
+  "parameter_breakdown": {
+    "total_params": 172119424,
+    "embedding_params": 128057344,
+    "non_embedding_params": 44062080,
+    "tie_word_embeddings_effective": true
+  },
+  "lora_verification": {
+    "target_modules": [
+      "q",
+      "v"
+    ],
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "trainable_params": 344064,
+    "total_params": 172463488,
+    "trainable_pct_of_total": 0.19949961814526215,
+    "num_lora_injection_points": 96
+  },
+  "lora_rank_ablation": {
+    "4": {
+      "target_modules": [
+        "q",
+        "v"
+      ],
+      "r": 4,
+      "lora_alpha": 8,
+      "lora_dropout": 0.05,
+      "trainable_params": 172032,
+      "total_params": 172291456,
+      "trainable_pct_of_total": 0.0998494086671367,
+      "num_lora_injection_points": 96
+    },
+    "8": {
+      "target_modules": [
+        "q",
+        "v"
+      ],
+      "r": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "trainable_params": 344064,
+      "total_params": 172463488,
+      "trainable_pct_of_total": 0.19949961814526215,
+      "num_lora_injection_points": 96
+    },
+    "16": {
+      "target_modules": [
+        "q",
+        "v"
+      ],
+      "r": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "trainable_params": 688128,
+      "total_params": 172807552,
+      "trainable_pct_of_total": 0.3982048191967907,
+      "num_lora_injection_points": 96
+    }
+  },
+  "seq2seq_trainer_compat": {
+    "seq2seq_training_arguments_importable": true,
+    "seq2seq_trainer_importable": true,
+    "trainer_constructed_with_model": true,
+    "predict_with_generate_supported": true
+  }
+}

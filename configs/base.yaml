@@ -1,0 +1,14 @@
+# Shared, non-experiment-specific settings.
+seed: 42
+
+project_name: multilingual-lora-summarization
+
+paths:
+  # All paths are relative to the repo root -- no machine-specific absolute paths.
+  results_dir: results
+  qa_dir: results/qa
+  report_dir: report
+  cache_dir: .cache/huggingface
+
+logging:
+  level: INFO

@@ -1,0 +1,30 @@
+{
+  "generated_at_utc": "2026-08-20T13:46:10.720896+00:00",
+  "model_name": "google/mt5-small",
+  "loaded_from": "pretrained checkpoint via .from_pretrained() -- ACTUAL weights, not config-only random init",
+  "tie_word_embeddings_same_object": false,
+  "tie_word_embeddings_same_values": false,
+  "actual_total_params": 300176768,
+  "embedding_params": 128057344,
+  "lm_head_params": 128057344,
+  "non_embedding_backbone_params": 44062080,
+  "comparison_to_earlier_config_only_report": {
+    "earlier_config_only_total_params": 172119424,
+    "earlier_config_only_embedding_params_tied": 128057344,
+    "note": "The earlier figure came from a randomly-initialized model where MT5Config forces tie_word_embeddings=True. It is NOT wrong for that model object, but it does not describe the actual deployed checkpoint. Use the actual_* fields in this file for any efficiency/trainable-% reporting going forward."
+  },
+  "lora_verification_on_actual_weights": {
+    "target_modules": [
+      "q",
+      "v"
+    ],
+    "r": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "trainable_params": 344064,
+    "total_params": 300520832,
+    "trainable_pct_of_total": 0.11448923447676333,
+    "num_lora_injection_points": 96
+  },
+  "lora_trainable_pct_of_non_embedding_backbone": 0.7808619111943875
+}

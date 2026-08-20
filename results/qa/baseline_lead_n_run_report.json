@@ -1,0 +1,97 @@
+{
+  "generated_at_utc": "2026-08-20T12:56:25.505772+00:00",
+  "n_values": [
+    1,
+    3
+  ],
+  "metrics_rows": [
+    {
+      "model": "lead_1",
+      "language": "english",
+      "rouge1": 0.24014772109614474,
+      "rouge2": 0.03764848130301476,
+      "rougeL": 0.18146543362316145,
+      "bertscore_f1": 0.6914519020318985,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.018581151962280273,
+      "avg_inference_time_sec": 3.716230392456055e-05
+    },
+    {
+      "model": "lead_1",
+      "language": "hindi",
+      "rouge1": 0.30095902565773913,
+      "rouge2": 0.12280968321572587,
+      "rougeL": 0.21728444973952862,
+      "bertscore_f1": 0.7074315980672836,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.04383993148803711,
+      "avg_inference_time_sec": 8.767986297607421e-05
+    },
+    {
+      "model": "lead_1",
+      "language": "telugu",
+      "rouge1": 0.21413388934106242,
+      "rouge2": 0.09331656471437959,
+      "rougeL": 0.16539124634785132,
+      "bertscore_f1": 0.6814775405526161,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.07451295852661133,
+      "avg_inference_time_sec": 0.00014902591705322264
+    },
+    {
+      "model": "lead_1",
+      "language": "overall",
+      "rouge1": 0.2517468786983154,
+      "rouge2": 0.08459157641104006,
+      "rougeL": 0.18804704323684712,
+      "bertscore_f1": 0.693453680217266,
+      "n_examples": 1500,
+      "total_inference_time_sec": 0.1369340419769287,
+      "avg_inference_time_sec": 9.128936131795247e-05
+    },
+    {
+      "model": "lead_3",
+      "language": "english",
+      "rouge1": 0.24071741591795276,
+      "rouge2": 0.05636362045454156,
+      "rougeL": 0.16430659961386773,
+      "bertscore_f1": 0.6855457701683044,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.04604530334472656,
+      "avg_inference_time_sec": 9.209060668945312e-05
+    },
+    {
+      "model": "lead_3",
+      "language": "hindi",
+      "rouge1": 0.30023260310888195,
+      "rouge2": 0.13476468510643422,
+      "rougeL": 0.19355818302977834,
+      "bertscore_f1": 0.7022071676254272,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.03683829307556152,
+      "avg_inference_time_sec": 7.367658615112304e-05
+    },
+    {
+      "model": "lead_3",
+      "language": "telugu",
+      "rouge1": 0.2532133211032973,
+      "rouge2": 0.11004678705471692,
+      "rougeL": 0.1692334695764589,
+      "bertscore_f1": 0.687626051902771,
+      "n_examples": 500,
+      "total_inference_time_sec": 0.17924022674560547,
+      "avg_inference_time_sec": 0.00035848045349121094
+    },
+    {
+      "model": "lead_3",
+      "language": "overall",
+      "rouge1": 0.26472111337671067,
+      "rouge2": 0.10039169753856424,
+      "rougeL": 0.17569941740670167,
+      "bertscore_f1": 0.6917929965655009,
+      "n_examples": 1500,
+      "total_inference_time_sec": 0.26212382316589355,
+      "avg_inference_time_sec": 0.00017474921544392903
+    }
+  ]
+}

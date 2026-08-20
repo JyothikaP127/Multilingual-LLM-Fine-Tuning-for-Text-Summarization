@@ -1,0 +1,49 @@
+rouge:
+  types: [rouge1, rouge2, rougeL]
+  # rouge_score's default tokenizer is an English whitespace/regex tokenizer,
+  # which is not meaningful for Hindi/Telugu. This project plugs a SentencePiece
+  # (mT5 tokenizer)-based tokenizer into rouge_score.RougeScorer(tokenizer=...)
+  # so ROUGE overlap is computed on consistent subword units across all three
+  # languages instead. See src/eval/ (not yet implemented) for the wrapper.
+  tokenizer_strategy: sentencepiece_mt5
+  use_stemmer: false
+
+bertscore:
+  # bert_score's built-in lang2model mapping has NO entry for 'hi' or 'te', and
+  # defaults 'en' to an English-only backbone (roberta-large). Pin one
+  # multilingual backbone explicitly for ALL languages so scores are
+  # cross-lingually comparable -- never mix backbones across languages.
+  model_type: bert-base-multilingual-cased
+  num_layers: 9
+  lang_per_example: true
+  # Heavier, higher-quality alternative for the final cloud-GPU run:
+  alternative_model_type: xlm-roberta-large
+
+bootstrap:
+  resamples: 1000
+  seed: 42
+
+qualitative_analysis:
+  samples_per_language: 15
+  seed: 42
+  categories: [hallucination, truncation_omission, extractive_copying, code_switching, repetition]
+
+# Zero-shot baseline generation config. Explicit on purpose -- HF's library
+# defaults differ by model/version and would make the baseline
+# non-reproducible if left unstated.
+generation:
+  max_new_tokens: 128     # matches configs/data.yaml preprocessing.max_target_length
+  num_beams: 4
+  length_penalty: 1.0
+  no_repeat_ngram_size: 3
+  early_stopping: true
+  do_sample: false        # deterministic beam search, not sampling
+  # Benchmarked directly on this machine (2026-08-20): batch=8 measured at
+  # ~0.86 examples/sec for zero-shot mT5-small generation at these settings.
+  batch_size: 8
+
+lead_n:
+  # N is not tuned on the test set -- both values are evaluated and reported;
+  # if a single N needs to be chosen going forward, it should be selected
+  # against validation data, then confirmed once on test.
+  values: [1, 3]

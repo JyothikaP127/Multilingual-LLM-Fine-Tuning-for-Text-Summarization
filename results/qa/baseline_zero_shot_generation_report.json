@@ -1,0 +1,37 @@
+{
+  "generated_at_utc": "2026-08-20T14:25:35.973396+00:00",
+  "model_name": "google/mt5-small",
+  "actual_total_params": 300176768,
+  "embedding_params": 128057344,
+  "lm_head_params": 128057344,
+  "tie_word_embeddings_actual": false,
+  "model_load_time_sec": 6.370178699493408,
+  "generation_config": {
+    "max_new_tokens": 128,
+    "num_beams": 4,
+    "length_penalty": 1.0,
+    "no_repeat_ngram_size": 3,
+    "early_stopping": true,
+    "do_sample": false
+  },
+  "batch_size": 8,
+  "max_source_length": 768,
+  "timing_by_language": {
+    "english": {
+      "total_inference_time_sec": 594.2916095256805,
+      "avg_inference_time_sec": 1.188583219051361,
+      "examples_per_sec": 0.8413378078803146
+    },
+    "hindi": {
+      "total_inference_time_sec": 651.2783226966858,
+      "avg_inference_time_sec": 1.3025566453933717,
+      "examples_per_sec": 0.7677209306302379
+    },
+    "telugu": {
+      "total_inference_time_sec": 401.4048433303833,
+      "avg_inference_time_sec": 0.8028096866607666,
+      "examples_per_sec": 1.2456252292612877
+    }
+  },
+  "note": "Predictions only -- no ROUGE/BERTScore computed here. Run scripts/evaluate_predictions.py against the saved predictions CSV for metrics."
+}
