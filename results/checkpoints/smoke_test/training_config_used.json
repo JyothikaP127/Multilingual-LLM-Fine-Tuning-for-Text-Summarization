@@ -1,0 +1,58 @@
+{
+  "generated_at_utc": "2026-08-20T17:12:46.707781+00:00",
+  "lora_config": {
+    "lora": {
+      "r": 8,
+      "lora_alpha": 16,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q",
+        "v"
+      ],
+      "task_type": "SEQ_2_SEQ_LM",
+      "bias": "none"
+    },
+    "rank_ablation": [
+      4,
+      8,
+      16
+    ],
+    "training": {
+      "learning_rate": 0.001,
+      "num_train_epochs": 1,
+      "warmup_ratio": 0.06,
+      "weight_decay": 0.0,
+      "per_device_train_batch_size": 2,
+      "gradient_accumulation_steps": 4,
+      "precision": "auto",
+      "logging_steps": 10,
+      "max_source_length": 768,
+      "max_target_length": 128
+    },
+    "smoke_test": {
+      "train_examples_per_language": 7,
+      "val_examples_per_language": 3,
+      "num_train_epochs": 1,
+      "per_device_train_batch_size": 2,
+      "gradient_accumulation_steps": 1,
+      "precision": "auto",
+      "logging_steps": 1,
+      "output_dir": "results/checkpoints/smoke_test"
+    },
+    "output": {
+      "full_run_dir": "results/checkpoints/lora_full"
+    }
+  },
+  "mode": "smoke",
+  "run_config": {
+    "train_examples_per_language": 7,
+    "val_examples_per_language": 3,
+    "num_train_epochs": 1,
+    "per_device_train_batch_size": 2,
+    "gradient_accumulation_steps": 1,
+    "precision": "auto",
+    "logging_steps": 1,
+    "output_dir": "results/checkpoints/smoke_test"
+  },
+  "resolved_precision": "fp32"
+}

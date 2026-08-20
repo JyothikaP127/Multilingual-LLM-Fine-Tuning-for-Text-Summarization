@@ -12,13 +12,6 @@ env/
 huggingface_cache/
 hf_cache/
 
-# Large model/checkpoint artifacts
-results/checkpoints/
-*.bin
-*.pt
-*.pth
-*.ckpt
-
 # Local/generated dataset artifacts
 data/cache/
 data/raw/
