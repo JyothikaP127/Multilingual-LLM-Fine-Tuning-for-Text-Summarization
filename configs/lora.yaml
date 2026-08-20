@@ -37,7 +37,9 @@ smoke_test:
   num_train_epochs: 1
   per_device_train_batch_size: 2
   gradient_accumulation_steps: 1
-  precision: fp32       # local CPU smoke test always runs fp32 (see configs/hardware/local_cpu.yaml)
+  precision: auto       # resolved via src/utils/hardware.py: fp32 on this CPU-only dev machine,
+                        # bf16 (emulated, not tensor-core-accelerated) on the Kaggle T4 -- see
+                        # investigation notes for why bf16 is safe but not faster than fp32 on T4
   logging_steps: 1
   output_dir: results/checkpoints/smoke_test
 
